@@ -1,8 +1,7 @@
 ---
-layout: post
+layout: simple
 title:  "NSNotificationCenter：通知中心"
 date:   2024-04-08
-categories: jekyll update
 ---
 
 ### 引言
