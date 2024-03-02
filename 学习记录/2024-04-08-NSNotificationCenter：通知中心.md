@@ -1,5 +1,5 @@
 ---
-layout: simple
+layout: post
 title:  "NSNotificationCenter：通知中心"
 date:   2024-04-08
 ---
@@ -101,7 +101,7 @@ typedef NS_OPTIONS(NSUInteger, NSNotificationCoalescing) {
 
 ### 实现原理
 
-![img](https://redrock.feishu.cn/space/api/box/stream/download/asynccode/?code=NjUzODQwMTM4YjlmYWY3NzU0YmZiNTY3MTA4N2I1MWZfZzVRNkFKT01MT283WGo3RktoZnZEdmVBSHBhTm5TMENfVG9rZW46WThpQmJ2a05Ibzd2S2J4aVlTa2NDTkQwbkdiXzE3MDkzNjYwMzU6MTcwOTM2OTYzNV9WNA)
+![image-20240302170723709](/Users/aishijie/Library/Application Support/typora-user-images/image-20240302170723709.png)
 
 ### Table
 
@@ -111,7 +111,7 @@ typedef NS_OPTIONS(NSUInteger, NSNotificationCoalescing) {
 
 先看一下表中保存的内容及Key，Value类型。
 
-![img](https://redrock.feishu.cn/space/api/box/stream/download/asynccode/?code=MDBlMzE1MzcyNTBmMzkwYjM5ZjQ0NTA3NmY2M2QzYTZfbmxvblRYTjRGdGZiWFpPMWk1aEpTcGV4dWtvU1RHUXVfVG9rZW46U3I5aWJQd1Zvb0ZtRzB4S0pYWGNxb01rbmtmXzE3MDkzNjYwMzU6MTcwOTM2OTYzNV9WNA)
+![image-20240302170800357](/Users/aishijie/Library/Application Support/typora-user-images/image-20240302170800357.png)
 
 在Named Table中，NotifcationName作为表的key，**因为我们在注册观察者的时候是可以传入一个参数object用于只监听指定该对象发出的通知，并且一个通知可以添加多个观察者，所以还需要一张表来保存object和Observer的对应关系。这张表的是key、Value分别是以object为Key，Observer为value。**
 
@@ -124,7 +124,7 @@ typedef NS_OPTIONS(NSUInteger, NSNotificationCoalescing) {
 
 `UnNamed Table`没有`NSNotificationName`作为key，所以只有`object`和`observer`。
 
-![img](https://redrock.feishu.cn/space/api/box/stream/download/asynccode/?code=NWVhZWNiYWM5MzFmOTUwNTEyYjA0NjQwNDIwMmIzOTNfaTlHUzNXSlVnWFVLRms2SndlWXZKR1d4TDBGcDQwMllfVG9rZW46VTJINWJVcGhsb2RTMFR4RjJDOGNqcng4bjhiXzE3MDkzNjYwMzU6MTcwOTM2OTYzNV9WNA)
+![image-20240302170820495](/Users/aishijie/Library/Application Support/typora-user-images/image-20240302170820495.png)
 
 ### 使用通知
 
@@ -435,7 +435,7 @@ NSObject -> UIGestureRecognizer
 
 例如，如下视图，点击E时的探测步骤：
 
-![img](https://redrock.feishu.cn/space/api/box/stream/download/asynccode/?code=Mjc1NWMyNGU4MzFjNjViZDRmNzFhYTk1ZDAzMjg0MjZfTWJJSmpYMnEzY3NjT3F6V28zNG93R0F4M1NNTTRxaVVfVG9rZW46QVpac2J0TWVwb0xwY1d4VUlEMWN1RENSbkxkXzE3MDkzNjYwMzU6MTcwOTM2OTYzNV9WNA)
+![image-20240302170909959](/Users/aishijie/Library/Application Support/typora-user-images/image-20240302170909959.png)
 
 1. 触摸点在A的范围内，所以继续探测A的subView，既view B和view C。
 2. 触摸点不在view B里，在view C里，所以继续探测C的subView D 和 E。
