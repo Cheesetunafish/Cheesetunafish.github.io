@@ -21,7 +21,7 @@ user:
   pic: /assets/img/profile.jpg
   picAlt: "A Cat"
   job: 无知的求知者
-  # aboutme: true # comment this out if you don't need the 'about' page.
+   aboutme: true # comment this out if you don't need the 'about' page.
 
 exclude:
   - README.md
