@@ -1,7 +1,7 @@
 ---
 title: Literature
 layout: simple
-order: 5
+order: 6
 ---
 
 ### Some stories that I like

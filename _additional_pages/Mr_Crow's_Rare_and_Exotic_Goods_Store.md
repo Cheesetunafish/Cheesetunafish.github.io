@@ -1,7 +1,7 @@
 ---
 title: Mr Crow's Rare and Exotic Goods Store
 layout: simple
-order: 6
+order: 5
 ---
 
 >  *Медведенко. Отчего вы всегда ходите в черном?*
