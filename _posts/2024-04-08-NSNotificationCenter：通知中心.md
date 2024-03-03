@@ -2,6 +2,7 @@
 layout: post
 title:  "NSNotificationCenter：通知中心"
 date:   2024-04-08
+category: 学习记录
 ---
 
 ### 引言
