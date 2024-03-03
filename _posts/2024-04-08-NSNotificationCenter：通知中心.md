@@ -14,7 +14,7 @@ category: 学习记录
 
 `NSNotification`包含了消息发送的一些信息，包括`name`消息名称、`object`消息发送者、`userinfo`消息发送者携带的额外信息，其类结构如下：
 
-```Objective-C
+```
 /****************        Notifications        ****************/
 
 @interface NSNotification : NSObject <NSCopying, NSCoding>
@@ -42,7 +42,7 @@ category: 学习记录
 
 可以通过实例方法构建`NSNotification`对象，也可以通过类方式构建。
 
-```Objective-C
+```
 // 创建NSNotification对象
 NSNotification *notification = [NSNotification notificationWithName:@"TestNotification" object:self userInfo:@{@"key": @"value"}];
 // 发送NSNotification对象到通知中心
@@ -55,7 +55,7 @@ NSNotification *notification = [NSNotification notificationWithName:@"TestNotifi
 
 消息通知中心，全局单例模式(每个进程都默认有一个默认的通知中心，用于进程内通信)，通过如下方法获取通知中心短息：
 
-```Objective-C
+```
 + (NSNotificationCenter *)defaultCenter
 ```
 
@@ -65,7 +65,7 @@ NSNotification *notification = [NSNotification notificationWithName:@"TestNotifi
 - 用于管理通知发送的顺序和优先级
 - 通知中心默认是采用异步的方式发送通知，如果多个通知同时到达通知中心，它们可能会以随机的顺序被发送到观察者。有时候，我们需要按照一定的顺序或者优先级来发送通知，这时候可以使用 NSNotificationQueue 类
 
-```Objective-C
+```
 @interface NSNotificationQueue : NSObject
 
 @property (class, readonly, strong) NSNotificationQueue *defaultQueue;
@@ -84,7 +84,7 @@ NSNotification *notification = [NSNotification notificationWithName:@"TestNotifi
 
 其中，添加通知到队列的两个参数枚举如下：
 
-```Objective-C
+```
 // NSPostingStyle: 配置通知什么时候发送
 typedef NS_ENUM(NSUInteger, NSPostingStyle) {
     NSPostWhenIdle = 1, // 在runloop处于空闲时发出通知
@@ -174,7 +174,7 @@ typedef NS_OPTIONS(NSUInteger, NSNotificationCoalescing) {
 
 在iOS系统中，手势是一个重要的用户交互方式。通过继承UIGestureRecognizer类，可以实现很多手势操作并应用于app中。关于UIGestureRecognizer类，是对iOS中的事件传递机制面向应用的封装，将手势消息的传递抽象为了对象。UIGestureRecognizer是一个手势识别器，通常作为父类，实际操作中要使用的是他的子类，常见的有以下几种：
 
-```Objective-C
+```
 UITapGestureRecognizer           // 轻拍手势
 UISwipeGestureRecognizer         // 轻扫手势
 UILongPressGestureRecognizer     // 长按手势
@@ -186,7 +186,7 @@ UIScreenEdgePanGestureRecognizer // 屏幕边缘平移
 
 属性、常用初始化方法如下：
 
-```Objective-C
+```
 @interface UIGestureRecognizer : NSObject
 //初始化，手势别后会调用 target 的 action 方法
 - (instancetype)initWithTarget:(nullable id)target action:(nullable SEL)action NS_DESIGNATED_INITIALIZER; // designated 
@@ -211,7 +211,7 @@ UIScreenEdgePanGestureRecognizer // 屏幕边缘平移
 
 手势状态的枚举如下：
 
-```Objective-C
+```
 typedef NS_ENUM(NSInteger, UIGestureRecognizerState) {
     UIGestureRecognizerStateBegan,      //手势开始，第一次调用 target 方法时就是这个 state
     UIGestureRecognizerStateChanged,   //状态变化的一个状态，如拖拽手势在第一次调用 target 方法后的一系列调用都是这个状态
@@ -225,7 +225,7 @@ typedef NS_ENUM(NSInteger, UIGestureRecognizerState) {
 
 ##### 属性
 
-```Objective-C
+```
 @property (nonatomic) NSUInteger  numberOfTapsRequired;       // 需要轻拍的次数，默认为1
 @property (nonatomic) NSUInteger  numberOfTouchesRequired API_UNAVAILABLE(tvos);    // 需要执行轻拍手势的手指数量，默认为1
 
@@ -234,7 +234,7 @@ typedef NS_ENUM(NSInteger, UIGestureRecognizerState) {
 
 若要给一个控件添加轻拍手势，可以按照以下方法添加。例如，要将一个`testView`通过轻拍手势改变颜色，则需要给这个view添加一个tap手势：
 
-```Objective-C
+```
 - (void)addTapGesture {
     // 初始化手势，并添加处理方法
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture)];
@@ -255,14 +255,14 @@ typedef NS_ENUM(NSInteger, UIGestureRecognizerState) {
 
 ##### 属性
 
-```Objective-C
+```
 @property(nonatomic) NSUInteger numberOfTouchesRequired API_UNAVAILABLE(tvos); // 需要的手指数量，默认为1
 @property(nonatomic) UISwipeGestureRecognizerDirection direction; 
 ```
 
 其中轻扫手势方向的枚举如下：
 
-```Objective-C
+```
 // 默认从左往右
 typedef NS_OPTIONS(NSUInteger, UISwipeGestureRecognizerDirection) {
     UISwipeGestureRecognizerDirectionRight = 1 << 0,    // 向右
@@ -274,7 +274,7 @@ typedef NS_OPTIONS(NSUInteger, UISwipeGestureRecognizerDirection) {
 
 若需要为`testView`添加一个轻扫手势，则代码如下：
 
-```Objective-C
+```
 - (void)addSwipeGesture {
     UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture)];
     swipe.direction = UISwipeGestureRecognizerDirectionRight;
@@ -292,7 +292,7 @@ typedef NS_OPTIONS(NSUInteger, UISwipeGestureRecognizerDirection) {
 
 ##### 属性
 
-```Objective-C
+```
 @property (nonatomic) NSUInteger numberOfTapsRequired; // 要求的触摸次数，默认为0，表示不需要任何额外的手势触发。
 @property (nonatomic) NSUInteger numberOfTouchesRequired; // 要求的手指数，默认为1，表示只需要一个手指长按。
 
@@ -302,7 +302,7 @@ typedef NS_OPTIONS(NSUInteger, UISwipeGestureRecognizerDirection) {
 
 若需要为`testView`添加一个长按手势，则代码如下：
 
-```Objective-C
+```
 - (void)addLongPressGesture {
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture)];
     longPress.minimumPressDuration = 1;
@@ -320,7 +320,7 @@ typedef NS_OPTIONS(NSUInteger, UISwipeGestureRecognizerDirection) {
 
 ##### 属性
 
-```Objective-C
+```
 @property (nonatomic) NSUInteger minimumNumberOfTouches; // 识别手势所需的最小触摸点数。 
 @property (nonatomic) NSUInteger maximumNumberOfTouches; // 识别手势所需的最大触摸点数。
 
@@ -332,7 +332,7 @@ typedef NS_OPTIONS(NSUInteger, UISwipeGestureRecognizerDirection) {
 
 若需要移动`testView`的位置，使用平移手势代码如下：
 
-```Objective-C
+```
 - (void)addPanGesture {
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
     [self.testView addGestureRecognizer:pan];
@@ -354,7 +354,7 @@ typedef NS_OPTIONS(NSUInteger, UISwipeGestureRecognizerDirection) {
 
 ##### 属性
 
-```Objective-C
+```
 @property (readwrite, nonatomic, assign) UIRectEdge edges; // 手势应该从哪个边缘识别。
 ```
 
@@ -364,14 +364,14 @@ typedef NS_OPTIONS(NSUInteger, UISwipeGestureRecognizerDirection) {
 
 ##### 属性
 
-```Objective-C
+```
 @property (nonatomic) CGFloat scale; // 当前手势的缩放比例，手指距离缩放前后的比值。
 @property (nonatomic,readonly) CGFloat velocity; // 当前手势的缩放速度，是一个 CGPoint 类型，表示每秒缩放的比例。
 ```
 
 若以scale为1的缩放比例对`testView`进行缩放，且每次缩放从当前大小开始，则代码如下：
 
-```Objective-C
+```
 - (void)addPinchGesture {
     UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchGesture:)];
     [self.testView addGestureRecognizer:pinch];
@@ -389,7 +389,7 @@ typedef NS_OPTIONS(NSUInteger, UISwipeGestureRecognizerDirection) {
 
 ##### 属性
 
-```Objective-C
+```
 @property (nonatomic) CGFloat rotation; // 当前手势旋转的弧度值。
 @property (nonatomic,readonly) CGFloat velocity; // 当前手势旋转的速度，单位为弧度/秒。
 ```
@@ -401,12 +401,12 @@ typedef NS_OPTIONS(NSUInteger, UISwipeGestureRecognizerDirection) {
 
 继承关系如下所示：
 
-```Objective-C
+```
                            UIView -> UIWindow
 NSObject -> UIResponder -> UIView -> UIControl -> UIButton
             UIResponder -> UIApplication
             UIResponder -> UIViewController
-NSObject -> UIGestureRecognizer                                                                                                                                                                                                                                                                                                                                                                                                                                         
+NSObject -> UIGestureRecognizer
 
 //UIResponder 有一个属性 nextResponder ，这个属性就是该对象的下一响应者。
 @property(nonatomic, readonly, nullable) UIResponder *nextResponder;
@@ -423,7 +423,7 @@ NSObject -> UIGestureRecognizer
 
 当我们触摸屏幕时，到底应该由哪个对象最先响应这个事件呢？这就需要去探测，这个过程称为`Hit-Testing`，最后的结果称为`hit-test view`。涉及到两个方法是：
 
-```Objective-C
+```
 //先判断点是否在View内部，然后遍历subViews
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event; 
 //判断点是否在这个View内部
