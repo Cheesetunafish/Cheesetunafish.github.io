@@ -102,7 +102,7 @@ typedef NS_OPTIONS(NSUInteger, NSNotificationCoalescing) {
 
 ### 实现原理
 
-![image-20240302170723709](/Users/aishijie/Library/Application Support/typora-user-images/image-20240302170723709.png)
+![image-20240302170723709](/Users/aishijie/Documents/cheesetunafish.github.io/assets/img/blogImg/通知中心实现原理.png)
 
 ### Table
 
@@ -110,9 +110,7 @@ typedef NS_OPTIONS(NSUInteger, NSNotificationCoalescing) {
 
 #### Named Table
 
-先看一下表中保存的内容及Key，Value类型。
-
-![image-20240302170800357](/Users/aishijie/Library/Application Support/typora-user-images/image-20240302170800357.png)
+先看一下表中保存的内容及Key，Value类型。![通知中心-namedTable](/Users/aishijie/Documents/cheesetunafish.github.io/assets/img/blogImg/通知中心-namedTable.png)
 
 在Named Table中，NotifcationName作为表的key，**因为我们在注册观察者的时候是可以传入一个参数object用于只监听指定该对象发出的通知，并且一个通知可以添加多个观察者，所以还需要一张表来保存object和Observer的对应关系。这张表的是key、Value分别是以object为Key，Observer为value。**
 
@@ -125,7 +123,7 @@ typedef NS_OPTIONS(NSUInteger, NSNotificationCoalescing) {
 
 `UnNamed Table`没有`NSNotificationName`作为key，所以只有`object`和`observer`。
 
-![image-20240302170820495](/Users/aishijie/Library/Application Support/typora-user-images/image-20240302170820495.png)
+![image-20240302170820495](/Users/aishijie/Documents/cheesetunafish.github.io/assets/img/blogImg/通知中心-nameTable2.png)
 
 ### 使用通知
 
@@ -436,7 +434,7 @@ NSObject -> UIGestureRecognizer
 
 例如，如下视图，点击E时的探测步骤：
 
-![image-20240302170909959](/Users/aishijie/Library/Application Support/typora-user-images/image-20240302170909959.png)
+![image-20240302170909959](/Users/aishijie/Documents/cheesetunafish.github.io/assets/img/blogImg/通知中心-Hit-Testing.png)
 
 1. 触摸点在A的范围内，所以继续探测A的subView，既view B和view C。
 2. 触摸点不在view B里，在view C里，所以继续探测C的subView D 和 E。
